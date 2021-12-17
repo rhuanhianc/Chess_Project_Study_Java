@@ -1,6 +1,10 @@
 package application;
 import chess.Color;
+
+import java.util.Scanner;
+
 import chess.ChessPiece;
+import chess.ChessPosiotion;
 
 public class UI {
 	public static final String ANSI_RESET = "\u001B[0m";
@@ -22,6 +26,18 @@ public class UI {
 	public static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
 	public static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
 
+
+	public static ChessPosiotion readChessPosition(Scanner sc) {
+		try{
+		String s = sc.nextLine();
+		char column = s.charAt(0);
+		int row = Integer.parseInt(s.substring(1));
+		return new ChessPosiotion(column, row);
+		}catch(RuntimeException e) {
+			System.out.println("Erro na leitura da posição");
+			return null;
+		}
+	}
 
 	public static void printBoard(ChessPiece[][] pieces) {
 		for(int i =0; i<pieces.length; i++) {

@@ -23,6 +23,17 @@ public class ChessMatch {
 		}
 		return mat;
 	}
+	public ChessPiece perfomChessMove(ChessPosiotion sourcePosition, ChessPosition targetPosition) {
+		Position source = sourcePosition.toPosition();
+		Position target = targetPosition.toPosition();
+		Piece capturedPiece = board.removePiece(target);
+		Piece movedPiece = board.piece(source);
+		movedPiece.increaseMoveCount();
+		board.placePiece(movedPiece, target);
+		
+		return (ChessPiece) capturedPiece;
+	}
+
 	private void placeNewPiece(char column, int row, ChessPiece piece) {
 		board.placePiece(piece, new ChessPosiotion(column, row).toPosition());
 	}

@@ -28,6 +28,7 @@ public class ChessMatch {
 		Position source = sourcePosition.toPosition();
 		Position target = targetPosition.toPosition();
 		validateSourcePosition(source);
+		validateTargetPosition(source, target);
 		Piece capturedPiece = makeMove(source, target);
 		
 		return (ChessPiece) capturedPiece;
@@ -41,7 +42,11 @@ public class ChessMatch {
 			throw new ChessException("There is no possible moves for the piece on source position");
 		}
 	}
-
+	private void validateTargetPosition(Position source, Position target) {
+		if(!board.piece(source).possibleMove(target)) {
+			throw new ChessException("The target position is occupied by the same color");
+		}
+	}
 	private Piece makeMove(Position source, Position target) {
 		Piece p = board.removePiece(source);
 		Piece capturedPiece = board.removePiece(target);

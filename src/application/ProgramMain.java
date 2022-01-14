@@ -39,6 +39,8 @@ public class ProgramMain {
 			}
 
 		}
+
+
 	}
 	// Board board = new Board(8, 8);
 }

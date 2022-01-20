@@ -95,4 +95,11 @@ public class ChessMatch {
 		
 
 	}
+
+	private void undoMove(ChessPiece piece, Position source, Position target, Piece capturedPiece) {
+		board.placePiece(piece, source);
+		board.placePiece(capturedPiece, target);
+		turn--;
+		currentPlayer = (currentPlayer == Color.WHITE) ? Color.BLACK : Color.WHITE;
+	}
 }
